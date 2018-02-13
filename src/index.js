@@ -1,6 +1,7 @@
 import readlineSync from 'readline-sync';
 import evenGame from './games/even';
 import calcGame from './games/calc';
+import gcdGame from './games/gcd';
 
 function selectGameType(gameType) {
   switch (gameType) {
@@ -8,6 +9,8 @@ function selectGameType(gameType) {
       return evenGame;
     case 'calc':
       return calcGame;
+    case 'gcd':
+      return gcdGame;
     default:
       return evenGame;
   }
@@ -19,6 +22,8 @@ function selectDisclaimer(gameType) {
       return 'Answer "yes" if number even otherwise answer "no".\n';
     case 'calc':
       return 'What is the result of the expression?\n';
+    case 'gcd':
+      return 'Find the greatest common divisor of given numbers.\n';
     default:
       return 'Answer "yes" if number even otherwise answer "no".\n';
   }
