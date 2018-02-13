@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import index from '..';
+import brainGames from '..';
 
-index();
+brainGames();

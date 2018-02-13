@@ -1,10 +1,11 @@
 {
   "name": "brain-games-ostart-js",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "first hexlet project node.js",
   "main": "brain-games.js",
   "bin": {
-    "brain-games": "dist/bin/brain-games.js"
+    "brain-games": "dist/bin/brain-games.js",
+    "brain-even": "dist/bin/brain-even.js"
   },
   "files": [
     "dist"
