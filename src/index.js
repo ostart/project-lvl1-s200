@@ -13,11 +13,22 @@ function selectGameType(gameType) {
   }
 }
 
+function selectDisclaimer(gameType) {
+  switch (gameType) {
+    case 'even':
+      return 'Answer "yes" if number even otherwise answer "no".\n';
+    case 'calc':
+      return 'What is the result of the expression?\n';
+    default:
+      return 'Answer "yes" if number even otherwise answer "no".\n';
+  }
+}
+
 export default function brainGames(gameType) {
   const checkAnswer = selectGameType(gameType);
 
   console.log('Welcome to the Brain Games!');
-  console.log('Answer "yes" if number even otherwise answer "no".\n');
+  console.log(selectDisclaimer(gameType));
 
   const name = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${name}!\n`);
