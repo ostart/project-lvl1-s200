@@ -2,4 +2,4 @@
 
 import brainGames from '..';
 
-brainGames();
+brainGames('calc');
