@@ -1,7 +1,3 @@
-
-
-import readlineSync from 'readline-sync';
-
 const arr = ['+', '-', '*'];
 
 function getRandomInt(min, max) {
@@ -25,25 +21,32 @@ function calculateResult(num1, num2, oper) {
   }
 }
 
-export default function calcGame(count, success) {
-  if (count === success) {
-    return true;
+class GameData {
+  constructor() {
+    this.number1 = 0;
+    this.number2 = 0;
+    this.pointer = 0;
+    this.operator = getOperator(this.pointer);
   }
 
-  const number1 = getRandomInt(0, 100);
-  const number2 = getRandomInt(0, 100);
-  const operator = getOperator(count);
-
-  console.log(`Question: ${number1} ${operator} ${number2}`);
-  const answer = readlineSync.question('Your answer: ');
-  const result = calculateResult(number1, number2, operator);
-
-  if (answer === result.toString()) {
-    console.log('Correct!');
-    return calcGame(count + 1, success);
+  generateNew() {
+    this.number1 = getRandomInt(0, 100);
+    this.number2 = getRandomInt(0, 100);
+    this.operator = getOperator(this.pointer);
+    this.pointer += 1;
   }
 
-  console.log(`${answer} is wrong answer ;(. Correct answer was ${result}.`);
+  getQuestion() {
+    return `Question: ${this.number1} ${this.operator} ${this.number2}`;
+  }
 
-  return false;
+  calculateResult() {
+    return calculateResult(this.number1, this.number2, this.operator);
+  }
+}
+
+export default function game(gameProc) {
+  const disclaimer = 'What is the result of the expression?\n';
+  const data = new GameData();
+  gameProc.playGame(disclaimer, data);
 }

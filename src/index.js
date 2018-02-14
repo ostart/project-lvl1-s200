@@ -1,52 +1,44 @@
 import readlineSync from 'readline-sync';
-import evenGame from './games/even';
-import calcGame from './games/calc';
-import gcdGame from './games/gcd';
 
-function selectGameType(gameType) {
-  switch (gameType) {
-    case 'even':
-      return evenGame;
-    case 'calc':
-      return calcGame;
-    case 'gcd':
-      return gcdGame;
-    default:
-      return evenGame;
+function iter(count, success, gameData) {
+  if (count === success) {
+    return true;
   }
+
+  gameData.generateNew();
+  console.log(gameData.getQuestion());
+  const answer = readlineSync.question('Your answer: ');
+  const result = gameData.calculateResult();
+
+  if (answer === result.toString()) {
+    console.log('Correct!');
+    return iter(count + 1, success, gameData);
+  }
+
+  console.log(`${answer} is wrong answer ;(. Correct answer was ${result}.`);
+
+  return false;
 }
 
-function selectDisclaimer(gameType) {
-  switch (gameType) {
-    case 'even':
-      return 'Answer "yes" if number even otherwise answer "no".\n';
-    case 'calc':
-      return 'What is the result of the expression?\n';
-    case 'gcd':
-      return 'Find the greatest common divisor of given numbers.\n';
-    default:
-      return 'Answer "yes" if number even otherwise answer "no".\n';
+export default class GameProcess {
+  constructor() {
+    this.name = '';
+    this.counter = 0;
+    this.successTry = 3;
+  }
+
+  playGame(disclaimer, gameData) {
+    console.log('Welcome to the Brain Games!');
+    console.log(disclaimer);
+    this.name = readlineSync.question('May I have your name? ');
+    console.log(`Hello, ${this.name}!\n`);
+
+    const isCorrect = iter(this.counter, this.successTry, gameData);
+
+    if (isCorrect) {
+      console.log(`Congratulations, ${this.name}!`);
+    } else {
+      console.log(`Let's try again, ${this.name}!`);
+    }
   }
 }
-
-export default function brainGames(gameType) {
-  const checkAnswer = selectGameType(gameType);
-
-  console.log('Welcome to the Brain Games!');
-  console.log(selectDisclaimer(gameType));
-
-  const name = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${name}!\n`);
-
-  const counter = 0;
-  const successTry = 3;
-
-  const isCorrect = checkAnswer(counter, successTry);
-
-  if (isCorrect) {
-    console.log(`Congratulations, ${name}!`);
-  } else {
-    console.log(`Let's try again, ${name}!`);
-  }
-}
-

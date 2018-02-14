@@ -1,25 +1,27 @@
-import readlineSync from 'readline-sync';
-
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * ((max - min) + 1)) + min;
 }
 
-export default function evenGame(count, success) {
-  if (count === success) {
-    return true;
+class GameData {
+  constructor() {
+    this.number = 0;
   }
 
-  const number = getRandomInt(0, 100);
-  console.log(`Question: ${number}`);
-  const answer = readlineSync.question('Your answer: ');
-
-  if ((answer === 'yes' && number % 2 === 0) || (answer === 'no' && number % 2 === 1)) {
-    console.log('Correct!');
-    return evenGame(count + 1, success);
+  generateNew() {
+    this.number = getRandomInt(0, 100);
   }
 
-  const was = (number % 2 === 0) ? 'yes' : 'no';
-  console.log(`${answer} is wrong answer ;(. Correct answer was ${was}.`);
+  getQuestion() {
+    return `Question: ${this.number}`;
+  }
 
-  return false;
+  calculateResult() {
+    return (this.number % 2 === 0) ? 'yes' : 'no';
+  }
+}
+
+export default function game(gameProc) {
+  const disclaimer = 'Answer "yes" if number even otherwise answer "no".\n';
+  const data = new GameData();
+  gameProc.playGame(disclaimer, data);
 }
