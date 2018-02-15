@@ -8,7 +8,7 @@ function getOperator(count) {
   return arr[count];
 }
 
-function calculateResult(num1, num2, oper) {
+function calcResult(num1, num2, oper) {
   switch (oper) {
     case '+':
       return num1 + num2;
@@ -21,32 +21,30 @@ function calculateResult(num1, num2, oper) {
   }
 }
 
-class GameData {
-  constructor() {
-    this.number1 = 0;
-    this.number2 = 0;
-    this.pointer = 0;
-    this.operator = getOperator(this.pointer);
-  }
+function GameData() {
+  let number1 = 0;
+  let number2 = 0;
+  let pointer = 0;
+  let operator = getOperator(pointer);
 
-  generateNew() {
-    this.number1 = getRandomInt(0, 100);
-    this.number2 = getRandomInt(0, 100);
-    this.operator = getOperator(this.pointer);
-    this.pointer += 1;
-  }
+  this.generateNew = function generateNew() {
+    number1 = getRandomInt(0, 100);
+    number2 = getRandomInt(0, 100);
+    operator = getOperator(pointer);
+    pointer += 1;
+  };
 
-  getQuestion() {
-    return `Question: ${this.number1} ${this.operator} ${this.number2}`;
-  }
+  this.getQuestion = function getQuestion() {
+    return `Question: ${number1} ${operator} ${number2}`;
+  };
 
-  calculateResult() {
-    return calculateResult(this.number1, this.number2, this.operator);
-  }
+  this.calculateResult = function calculateResult() {
+    return calcResult(number1, number2, operator);
+  };
 }
 
 export default function game(gameProc) {
-  const disclaimer = 'What is the result of the expression?\n';
+  const disclaimer = 'What is the result of the expression?';
   const data = new GameData();
   gameProc.playGame(disclaimer, data);
 }

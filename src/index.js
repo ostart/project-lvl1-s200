@@ -20,25 +20,24 @@ function iter(count, success, gameData) {
   return false;
 }
 
-export default class GameProcess {
-  constructor() {
-    this.name = '';
-    this.counter = 0;
-    this.successTry = 3;
-  }
+export default function GameProcess() {
+  let name = '';
+  const counter = 0;
+  const successTry = 3;
 
-  playGame(disclaimer, gameData) {
+  this.playGame = function playGame(disclaimer, gameData) {
     console.log('Welcome to the Brain Games!');
     console.log(disclaimer);
-    this.name = readlineSync.question('May I have your name? ');
-    console.log(`Hello, ${this.name}!\n`);
+    console.log();
+    name = readlineSync.question('May I have your name? ');
+    console.log(`Hello, ${name}!\n`);
 
-    const isCorrect = iter(this.counter, this.successTry, gameData);
+    const isCorrect = iter(counter, successTry, gameData);
 
     if (isCorrect) {
-      console.log(`Congratulations, ${this.name}!`);
+      console.log(`Congratulations, ${name}!`);
     } else {
-      console.log(`Let's try again, ${this.name}!`);
+      console.log(`Let's try again, ${name}!`);
     }
-  }
+  };
 }

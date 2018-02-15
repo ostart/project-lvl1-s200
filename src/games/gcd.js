@@ -9,30 +9,28 @@ function gcd(a, b) {
   return gcd(b, a % b);
 }
 
-class GameData {
-  constructor() {
-    this.number1 = 0;
-    this.number2 = 0;
-  }
+function GameData() {
+  let number1 = 0;
+  let number2 = 0;
 
-  generateNew() {
-    this.number1 = getRandomInt(1, 100);
-    this.number2 = getRandomInt(1, 100);
-  }
+  this.generateNew = function generateNew() {
+    number1 = getRandomInt(1, 100);
+    number2 = getRandomInt(1, 100);
+  };
 
-  getQuestion() {
-    return `Question: ${this.number1} ${this.number2}`;
-  }
+  this.getQuestion = function getQuestion() {
+    return `Question: ${number1} ${number2}`;
+  };
 
-  calculateResult() {
-    const n1 = this.number1;
-    const n2 = this.number2;
+  this.calculateResult = function calculateResult() {
+    const n1 = number1;
+    const n2 = number2;
     return (n1 < n2) ? gcd(n1, n2) : gcd(n2, n1);
-  }
+  };
 }
 
 export default function game(gameProc) {
-  const disclaimer = 'Find the greatest common divisor of given numbers.\n';
+  const disclaimer = 'Find the greatest common divisor of given numbers.';
   const data = new GameData();
   gameProc.playGame(disclaimer, data);
 }

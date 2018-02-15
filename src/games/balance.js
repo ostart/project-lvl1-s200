@@ -14,26 +14,24 @@ function balance(a) {
   return balance(arr.join(''));
 }
 
-class GameData {
-  constructor() {
-    this.number = 0;
-  }
+function GameData() {
+  let number = 0;
 
-  generateNew() {
-    this.number = getRandomInt(100, 9999);
-  }
+  this.generateNew = function generateNew() {
+    number = getRandomInt(100, 9999);
+  };
 
-  getQuestion() {
-    return `Question: ${this.number}`;
-  }
+  this.getQuestion = function getQuestion() {
+    return `Question: ${number}`;
+  };
 
-  calculateResult() {
-    return balance(this.number.toString());
-  }
+  this.calculateResult = function calculateResult() {
+    return balance(number.toString());
+  };
 }
 
 export default function game(gameProc) {
-  const disclaimer = 'Balance the given number.\n';
+  const disclaimer = 'Balance the given number.';
   const data = new GameData();
   gameProc.playGame(disclaimer, data);
 }

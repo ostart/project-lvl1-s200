@@ -16,6 +16,7 @@ start4:
 	npm run babel-node -- src/bin/brain-balance.js
 	
 build:
+	rm -rf dist/
 	npm run build
 	
 publish:
