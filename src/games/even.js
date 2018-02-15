@@ -1,3 +1,5 @@
+import GameProcess from '..';
+
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * ((max - min) + 1)) + min;
 }
@@ -18,8 +20,9 @@ function GameData() {
   };
 }
 
-export default function game(gameProc) {
+export default function game() {
   const disclaimer = 'Answer "yes" if number even otherwise answer "no".';
   const data = new GameData();
+  const gameProc = new GameProcess();
   gameProc.playGame(disclaimer, data);
 }

@@ -1,3 +1,5 @@
+import GameProcess from '..';
+
 const arr = ['+', '-', '*'];
 
 function getRandomInt(min, max) {
@@ -43,8 +45,9 @@ function GameData() {
   };
 }
 
-export default function game(gameProc) {
+export default function game() {
   const disclaimer = 'What is the result of the expression?';
   const data = new GameData();
+  const gameProc = new GameProcess();
   gameProc.playGame(disclaimer, data);
 }
