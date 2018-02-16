@@ -28,9 +28,9 @@ const gameData = () => {
   operator = getOperator(pointer);
   pointer += 1;
 
-  const quest = () => `Question: ${number1} ${operator} ${number2}`;
+  const quest = `Question: ${number1} ${operator} ${number2}`;
 
-  const result = () => calcResult(number1, number2, operator);
+  const result = calcResult(number1, number2, operator);
 
   return { Question: quest, Result: result };
 };

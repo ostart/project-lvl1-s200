@@ -5,9 +5,9 @@ const getRandomInt = (min, max) => Math.floor(Math.random() * ((max - min) + 1))
 const gameData = () => {
   const number = getRandomInt(0, 100);
 
-  const quest = () => `Question: ${number}`;
+  const quest = `Question: ${number}`;
 
-  const result = () => ((number % 2 === 0) ? 'yes' : 'no');
+  const result = (number % 2 === 0) ? 'yes' : 'no';
 
   return { Question: quest, Result: result };
 };

@@ -6,9 +6,9 @@ const iter = (count, success, gameData) => {
   }
 
   const data = gameData();
-  console.log(data.Question());
+  console.log(data.Question);
   const answer = readlineSync.question('Your answer: ');
-  const result = data.Result();
+  const result = data.Result;
 
   if (answer === result.toString()) {
     console.log('Correct!');

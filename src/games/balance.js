@@ -17,9 +17,9 @@ const balance = (a) => {
 const gameData = () => {
   const number = getRandomInt(100, 9999);
 
-  const quest = () => `Question: ${number}`;
+  const quest = `Question: ${number}`;
 
-  const result = () => balance(number.toString());
+  const result = balance(number.toString());
 
   return { Question: quest, Result: result };
 };
