@@ -13,7 +13,7 @@ const gameData = () => {
 };
 
 const game = () => {
-  const disclaimer = 'Answer "yes" if number even otherwise answer "no".';
+  const disclaimer = 'Answer "yes" if number is even otherwise answer "no".';
   playGame(disclaimer, gameData);
 };
 
