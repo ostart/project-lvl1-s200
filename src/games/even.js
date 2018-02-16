@@ -1,28 +1,20 @@
-import GameProcess from '..';
+import playGame from '..';
 
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * ((max - min) + 1)) + min;
-}
+const getRandomInt = (min, max) => Math.floor(Math.random() * ((max - min) + 1)) + min;
 
-function GameData() {
-  let number = 0;
+const gameData = () => {
+  const number = getRandomInt(0, 100);
 
-  this.generateNew = function generateNew() {
-    number = getRandomInt(0, 100);
-  };
+  const quest = () => `Question: ${number}`;
 
-  this.getQuestion = function getQuestion() {
-    return `Question: ${number}`;
-  };
+  const result = () => ((number % 2 === 0) ? 'yes' : 'no');
 
-  this.calculateResult = function calculateResult() {
-    return (number % 2 === 0) ? 'yes' : 'no';
-  };
-}
+  return { Question: quest, Result: result };
+};
 
-export default function game() {
+const game = () => {
   const disclaimer = 'Answer "yes" if number even otherwise answer "no".';
-  const data = new GameData();
-  const gameProc = new GameProcess();
-  gameProc.playGame(disclaimer, data);
-}
+  playGame(disclaimer, gameData);
+};
+
+export default game;

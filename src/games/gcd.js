@@ -1,40 +1,33 @@
-import GameProcess from '..';
+import playGame from '..';
 
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * ((max - min) + 1)) + min;
-}
+const getRandomInt = (min, max) => Math.floor(Math.random() * ((max - min) + 1)) + min;
 
-function gcd(a, b) {
+const gcd = (a, b) => {
   if (b === 0) {
     return a;
   }
   return gcd(b, a % b);
-}
+};
 
-function GameData() {
-  let number1 = 0;
-  let number2 = 0;
+const gameData = () => {
+  const number1 = getRandomInt(1, 100);
+  const number2 = getRandomInt(1, 100);
 
-  this.generateNew = function generateNew() {
-    number1 = getRandomInt(1, 100);
-    number2 = getRandomInt(1, 100);
-  };
+  const quest = () => `Question: ${number1} ${number2}`;
 
-  this.getQuestion = function getQuestion() {
-    return `Question: ${number1} ${number2}`;
-  };
-
-  this.calculateResult = function calculateResult() {
+  const result = () => {
     const n1 = number1;
     const n2 = number2;
     return (n1 < n2) ? gcd(n1, n2) : gcd(n2, n1);
   };
-}
 
-export default function game() {
+  return { Question: quest, Result: result };
+};
+
+const game = () => {
   const disclaimer = 'Find the greatest common divisor of given numbers.';
-  const data = new GameData();
-  const gameProc = new GameProcess();
-  gameProc.playGame(disclaimer, data);
-}
+  playGame(disclaimer, gameData);
+};
+
+export default game;
 

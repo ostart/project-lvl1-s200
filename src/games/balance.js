@@ -1,10 +1,8 @@
-import GameProcess from '..';
+import playGame from '..';
 
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * ((max - min) + 1)) + min;
-}
+const getRandomInt = (min, max) => Math.floor(Math.random() * ((max - min) + 1)) + min;
 
-function balance(a) {
+const balance = (a) => {
   const arr = a.split('');
   arr.sort();
   if (Number(arr[arr.length - 1]) - Number(arr[0]) <= 1) {
@@ -14,27 +12,21 @@ function balance(a) {
   arr[0] = (Number(arr[0]) + 1).toString();
   arr[arr.length - 1] = (Number(arr[arr.length - 1]) - 1).toString();
   return balance(arr.join(''));
-}
+};
 
-function GameData() {
-  let number = 0;
+const gameData = () => {
+  const number = getRandomInt(100, 9999);
 
-  this.generateNew = function generateNew() {
-    number = getRandomInt(100, 9999);
-  };
+  const quest = () => `Question: ${number}`;
 
-  this.getQuestion = function getQuestion() {
-    return `Question: ${number}`;
-  };
+  const result = () => balance(number.toString());
 
-  this.calculateResult = function calculateResult() {
-    return balance(number.toString());
-  };
-}
+  return { Question: quest, Result: result };
+};
 
-export default function game() {
+const game = () => {
   const disclaimer = 'Balance the given number.';
-  const data = new GameData();
-  const gameProc = new GameProcess();
-  gameProc.playGame(disclaimer, data);
-}
+  playGame(disclaimer, gameData);
+};
+
+export default game;
