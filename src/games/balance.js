@@ -1,6 +1,5 @@
 import playGame from '..';
-
-const getRandomInt = (min, max) => Math.floor(Math.random() * ((max - min) + 1)) + min;
+import getRandomInt from '../math';
 
 const balance = (a) => {
   const arr = a.split('');
@@ -17,11 +16,11 @@ const balance = (a) => {
 const gameData = () => {
   const number = getRandomInt(100, 9999);
 
-  const quest = `Question: ${number}`;
+  const quest = `${number}`;
 
   const result = balance(number.toString());
 
-  return { Question: quest, Result: result };
+  return { question: quest, answer: result };
 };
 
 const game = () => {

@@ -1,6 +1,5 @@
 import playGame from '..';
-
-const getRandomInt = (min, max) => Math.floor(Math.random() * ((max - min) + 1)) + min;
+import getRandomInt from '../math';
 
 const gcd = (a, b) => {
   if (b === 0) {
@@ -13,11 +12,11 @@ const gameData = () => {
   const number1 = getRandomInt(1, 100);
   const number2 = getRandomInt(1, 100);
 
-  const quest = `Question: ${number1} ${number2}`;
+  const quest = `${number1} ${number2}`;
 
   const result = (number1 < number2) ? gcd(number1, number2) : gcd(number2, number1);
 
-  return { Question: quest, Result: result };
+  return { question: quest, answer: result };
 };
 
 const game = () => {

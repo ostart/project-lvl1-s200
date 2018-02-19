@@ -1,6 +1,5 @@
 import playGame from '..';
-
-const getRandomInt = (min, max) => Math.floor(Math.random() * ((max - min) + 1)) + min;
+import getRandomInt from '../math';
 
 const generateProgression = (init, length, step) => {
   const arr = [];
@@ -19,11 +18,11 @@ const gameData = () => {
   const number = progression[position];
   progression[position] = '..';
 
-  const quest = `Question: ${progression}`;
+  const quest = `${progression}`;
 
   const result = number;
 
-  return { Question: quest, Result: result };
+  return { question: quest, answer: result };
 };
 
 const game = () => {

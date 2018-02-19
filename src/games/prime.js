@@ -1,6 +1,5 @@
 import playGame from '..';
-
-const getRandomInt = (min, max) => Math.floor(Math.random() * ((max - min) + 1)) + min;
+import getRandomInt from '../math';
 
 const isPrime = (a) => {
   const iter = (number, base) => {
@@ -19,15 +18,15 @@ const isPrime = (a) => {
 const gameData = () => {
   const number = getRandomInt(2, 100);
 
-  const quest = `Is this number prime? ${number}`;
+  const quest = `${number}`;
 
   const result = isPrime(number) ? 'yes' : 'no';
 
-  return { Question: quest, Result: result };
+  return { question: quest, answer: result };
 };
 
 const game = () => {
-  const disclaimer = 'Answer "yes" if number is prime otherwise answer "no".';
+  const disclaimer = 'Is this number prime?';
   playGame(disclaimer, gameData);
 };
 
